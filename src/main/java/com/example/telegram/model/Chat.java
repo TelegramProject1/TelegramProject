@@ -1,5 +1,6 @@
 package com.example.telegram.model;
 
+import com.example.telegram.model.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Chat {
+public class Chat extends BaseModel {
     private UUID member_one;
     private UUID member_two;
 }
