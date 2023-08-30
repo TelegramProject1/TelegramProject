@@ -17,6 +17,7 @@ public class BaseModel {
         this.created=LocalDateTime.now();
         this.updated=LocalDateTime.now();
     }
+
     private UUID id;
     private LocalDateTime created;
     private LocalDateTime updated;

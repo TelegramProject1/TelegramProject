@@ -4,11 +4,15 @@ import com.example.telegram.model.user.User;
 import com.example.telegram.model.user.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
@@ -33,7 +37,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Optional<User> findById(UUID id) {
-
         return Optional.ofNullable(jdbcTemplate.queryForObject(
                 UserSqlQueries.FIND_BY_ID,
                 userMapper,
@@ -57,12 +60,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Optional<User> getByUsername(String username) {
-        return Optional.empty();
+    public User getByUsername(String username) {
+       return (jdbcTemplate.queryForObject(UserSqlQueries.FIND_BY_USERNAME, userMapper, username));
     }
 
     @Override
-    public Optional<User> getByPhoneNumber(String phoneNumber) {
-        return Optional.empty();
+    public User getByPhoneNumber(String phoneNumber) {
+        return null;
     }
 }

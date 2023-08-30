@@ -10,9 +10,9 @@ import java.util.Optional;
 public interface UserRepository extends BaseRepository<User> {
 
 
-    Optional<User> getByUsername(String username);
+    User getByUsername(String username);
 
-    Optional<User> getByPhoneNumber(String phoneNumber);
+    User getByPhoneNumber(String phoneNumber);
 
 
 }

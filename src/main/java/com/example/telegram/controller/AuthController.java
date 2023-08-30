@@ -1,10 +1,15 @@
 package com.example.telegram.controller;
 
 import com.example.telegram.dto.userDto.UserRequestDto;
+import com.example.telegram.model.user.User;
 import com.example.telegram.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.PrintWriter;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,10 +23,17 @@ public class AuthController {
 
     @PostMapping("/sign-in")
     public String signInPage(@RequestParam String username,
-                             @RequestParam String password) {
-        System.out.println(username);
-        System.out.println(password);       // prosti korish uchun
-        return "main";
+                             @RequestParam String password,
+                             Model model) {
+
+        User user = userService.findByPoneNumber(username, password);
+
+        if (user != null) {
+            model.addAttribute("userId", user.getId());
+            return "main";
+        }else {
+            return "sign-in";
+        }
     }
 
     @GetMapping("/sign-up")
@@ -32,9 +44,19 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     public String signUpPage(@ModelAttribute UserRequestDto userRequestDto) {
-        System.out.println(userService.save(userRequestDto));
 
-        return "main";
+        //  User user = new User(userRequestDto);
+        //  System.out.println(userRequestDto);
+
+        try {
+            UUID uuid = userService.save(userRequestDto);
+            if (uuid != null) {
+                return "main";
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        return "home";
     }
 
 }
