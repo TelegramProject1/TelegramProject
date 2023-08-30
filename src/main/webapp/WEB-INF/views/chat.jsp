@@ -59,5 +59,6 @@
   <input type="text" name="searchQuery" placeholder="Search for friends...">
   <button type="submit">Search</button>
 </form>
+
 </body>
 </html>
