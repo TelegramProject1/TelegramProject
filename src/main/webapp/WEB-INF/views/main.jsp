@@ -61,8 +61,11 @@
 </head>
 <body>
 <div class="navbar">
-    <form action="${pageContext.request.contextPath}home.jsp"><button>Home</button></form>
-    <form action="${pageContext.request.contextPath}/chat">
+    <form action="${pageContext.request.contextPath}/" >
+        <button>Home</button>
+    </form>
+
+    <form action="${pageContext.request.contextPath}/chat" >
         <input type="hidden" name="userId" value="${userId}">
         <button>Start Chat</button>
     </form>

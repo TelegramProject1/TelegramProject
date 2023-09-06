@@ -24,5 +24,6 @@ public class UserMapper implements RowMapper<User> {
         user.setCreated(rs.getTimestamp("created").toLocalDateTime());
         user.setCreated(rs.getTimestamp("updated").toLocalDateTime());
         return  user;
+
     }
 }

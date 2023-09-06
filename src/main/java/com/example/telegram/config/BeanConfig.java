@@ -22,4 +22,5 @@ public class BeanConfig {
     public JdbcTemplate jdbcTemplate(){
         return new JdbcTemplate(dataSource());
     }
+
 }

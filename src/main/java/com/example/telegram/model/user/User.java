@@ -2,6 +2,8 @@ package com.example.telegram.model.user;
 
 import com.example.telegram.dto.userDto.UserRequestDto;
 import com.example.telegram.model.base.BaseModel;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +16,6 @@ import java.util.UUID;
 @Setter
 @Component
 public class User extends BaseModel {
-
-
-
     private String name;
     private String username;
     private String password;
@@ -25,7 +24,11 @@ public class User extends BaseModel {
 
 
     {
+
+        this.setId(UUID.randomUUID());
         this.setIsActive(true);
+        this.setCreated(LocalDateTime.now());
+        this.setUpdated(LocalDateTime.now());
 
     }
 

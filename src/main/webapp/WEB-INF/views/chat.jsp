@@ -56,7 +56,9 @@
 
 <h2>Search for New Friends:</h2>
 <form action="${pageContext.request.contextPath}/search-results" method="get">
-  <input type="text" name="searchQuery" placeholder="Search for friends...">
+  <label>
+    <input type="text" name="searchQuery" placeholder="Search for friends...">
+  </label>
   <button type="submit">Search</button>
 </form>
 

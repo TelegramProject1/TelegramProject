@@ -2,9 +2,9 @@ package com.example.telegram.repository.user;
 
 import com.example.telegram.model.user.User;
 import com.example.telegram.model.user.UserMapper;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,8 +15,13 @@ import java.util.UUID;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
+    private UserRepository userRepository;
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+
+    private EntityManager entityManager;
 
     @Autowired
     private UserMapper userMapper;
@@ -61,11 +66,17 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getByUsername(String username) {
-       return (jdbcTemplate.queryForObject(UserSqlQueries.FIND_BY_USERNAME, userMapper, username));
+        return (jdbcTemplate.queryForObject(UserSqlQueries.FIND_BY_USERNAME, userMapper, username));
     }
 
     @Override
     public User getByPhoneNumber(String phoneNumber) {
-        return null;
+        return (jdbcTemplate.queryForObject(UserSqlQueries.FIND_BY_PHONENUMBER, userMapper, phoneNumber));    }
+
+    @Override
+    public List<User> findFriendByUsername(String username) {
+        username = "%" + username + "%";
+        return userRepository.findFriendByUsername(username);
+
     }
 }

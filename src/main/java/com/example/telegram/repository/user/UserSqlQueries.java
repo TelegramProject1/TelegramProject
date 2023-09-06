@@ -6,13 +6,12 @@ public interface UserSqlQueries {
             values(?,?,?,?,?,?,?,?);
             """;
 
-    String FIND_BY_ID = "select * from users where id = ?;";
-    String FIND_BY_USERNAME = "select * from users where username = ?;";
+    String FIND_BY_ID = "select * from users where id = ?";
+    String FIND_BY_USERNAME = "select * from users where username = ?";
+    String FIND_BY_PHONENUMBER = "select * from users where phoneNumber = ?";
 
-//
-//    String GET_ALL = "select * from todo_user";
-//    String UPDATE = "update todo_user set ? = ? where ?=?; ";
-//    String FIND_BY_USERNAME = "select * from todo_user where username = ?;";
+
+    String GET_ALL = "select * from users";
 
 
 }
